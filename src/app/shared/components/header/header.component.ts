@@ -12,9 +12,25 @@ export class HeaderComponent implements OnInit {
   isScrolled = false;
   isVisible = true;
   lastScrollTop = 0;
+  isMobileMenuOpen = false;
 
   ngOnInit(): void {
     this.lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    // Previne scroll do body quando menu está aberto
+    if (this.isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
+    document.body.style.overflow = '';
   }
 
   @HostListener('window:scroll', [])
@@ -47,6 +63,8 @@ export class HeaderComponent implements OnInit {
 
   scrollToSection(sectionId: string, event: Event): void {
     event.preventDefault();
+    this.closeMobileMenu(); // Fecha o menu mobile ao clicar em um link
+    
     const element = document.getElementById(sectionId);
     if (element) {
       const headerHeight = 70;

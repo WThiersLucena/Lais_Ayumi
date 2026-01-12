@@ -15,12 +15,41 @@
         <span class="header__logo-text">Lais Ayumi</span>
       </button>
       
-      <nav class="header__nav" role="navigation" aria-label="Navegação principal">
+      <!-- Menu Desktop -->
+      <nav class="header__nav header__nav--desktop" role="navigation" aria-label="Navegação principal">
         <a href="#hero" class="header__nav-link" (click)="scrollToSection('hero', $event)">Início</a>
         <a href="#portfolio" class="header__nav-link" (click)="scrollToSection('portfolio', $event)">Portfólio</a>
         <a href="#making-of" class="header__nav-link" (click)="scrollToSection('making-of', $event)">Making Of</a>
       </nav>
+
+      <!-- Botão Menu Hambúrguer Mobile -->
+      <button 
+        class="header__menu-toggle"
+        (click)="toggleMobileMenu()"
+        [class.header__menu-toggle--active]="isMobileMenuOpen"
+        [attr.aria-expanded]="isMobileMenuOpen"
+        aria-label="Menu de navegação"
+        type="button"
+      >
+        <span class="header__menu-icon">
+          <span class="header__menu-line"></span>
+          <span class="header__menu-line"></span>
+          <span class="header__menu-line"></span>
+        </span>
+      </button>
     </div>
+
+    <!-- Menu Mobile -->
+    <nav 
+      class="header__nav header__nav--mobile"
+      [class.header__nav--mobile-open]="isMobileMenuOpen"
+      role="navigation"
+      aria-label="Navegação mobile"
+    >
+      <a href="#hero" class="header__nav-link" (click)="scrollToSection('hero', $event)">Início</a>
+      <a href="#portfolio" class="header__nav-link" (click)="scrollToSection('portfolio', $event)">Portfólio</a>
+      <a href="#making-of" class="header__nav-link" (click)="scrollToSection('making-of', $event)">Making Of</a>
+    </nav>
   </div>
 </header>
 
