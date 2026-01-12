@@ -1,0 +1,34 @@
+<section class="making-of section" aria-label="Vídeos de Making Of">
+  <div class="making-of__container">
+    <div class="making-of__header">
+      <h2 class="making-of__title">Making Of</h2>
+      <p class="making-of__subtitle">Bastidores dos trabalhos e processos criativos</p>
+    </div>
+
+    <div class="making-of__videos">
+      @for (video of videos; track video.videoPath) {
+        <div class="making-of__video-wrapper">
+          <div class="making-of__video-container">
+            <video 
+              class="making-of__video"
+              [src]="video.videoPath"
+              controls
+              preload="metadata"
+              [poster]="video.thumbnail"
+              (loadedmetadata)="onVideoLoaded($event)"
+              (canplay)="onVideoLoaded($event)"
+            >
+              Seu navegador não suporta a reprodução de vídeos.
+            </video>
+          </div>
+          
+          <div class="making-of__video-info">
+            <h3 class="making-of__video-title">{{ video.title }}</h3>
+            <p class="making-of__video-description">{{ video.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,123 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+
+  &--hidden {
+    transform: translateY(-100%);
+  }
+
+  &--scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: var(--spacing-sm) 0;
+
+    @media (max-width: 768px) {
+      height: 60px;
+    }
+  }
+
+  &__logo {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text-secondary);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-text-primary);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__logo-text {
+    display: block;
+  }
+
+  &__nav {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+
+    @media (max-width: 768px) {
+      gap: var(--spacing-sm);
+    }
+  }
+
+  &__nav-link {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 80%;
+      height: 1px;
+      background: var(--color-text-primary);
+      transition: transform var(--transition-normal);
+    }
+
+    &:hover {
+      color: var(--color-text-primary);
+
+      &::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-text-primary);
+      outline-offset: 2px;
+      border-radius: var(--border-radius-sm);
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.875rem;
+      padding: var(--spacing-xs);
+    }
+  }
+}
+

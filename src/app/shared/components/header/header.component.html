@@ -1,0 +1,26 @@
+<header 
+  class="header"
+  [class.header--scrolled]="isScrolled"
+  [class.header--hidden]="!isVisible"
+  role="banner"
+>
+  <div class="header__container">
+    <div class="header__content">
+      <button 
+        class="header__logo"
+        (click)="scrollToTop()"
+        aria-label="Voltar ao topo"
+        type="button"
+      >
+        <span class="header__logo-text">Lais Ayumi</span>
+      </button>
+      
+      <nav class="header__nav" role="navigation" aria-label="Navegação principal">
+        <a href="#hero" class="header__nav-link" (click)="scrollToSection('hero', $event)">Início</a>
+        <a href="#portfolio" class="header__nav-link" (click)="scrollToSection('portfolio', $event)">Portfólio</a>
+        <a href="#making-of" class="header__nav-link" (click)="scrollToSection('making-of', $event)">Making Of</a>
+      </nav>
+    </div>
+  </div>
+</header>
+

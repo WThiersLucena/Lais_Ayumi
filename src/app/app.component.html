@@ -1,0 +1,14 @@
+<app-header></app-header>
+<main class="app-main">
+  <section id="hero">
+    <app-hero [modelData]="modelData"></app-hero>
+  </section>
+  <section id="portfolio">
+    <app-portfolio [portfolioImages]="modelData.portfolioImages"></app-portfolio>
+  </section>
+  <section id="making-of">
+    <app-making-of [videos]="modelData.makingOfVideos"></app-making-of>
+  </section>
+  <router-outlet />
+</main>
+<app-footer></app-footer>

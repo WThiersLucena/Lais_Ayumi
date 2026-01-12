@@ -1,0 +1,124 @@
+<section class="portfolio section" aria-label="Portfólio de fotos">
+  <div class="portfolio__container">
+    <div class="portfolio__header">
+      <h2 class="portfolio__title">Portfólio</h2>
+      <p class="portfolio__subtitle">Uma seleção de trabalhos profissionais</p>
+    </div>
+
+    <div class="portfolio__carousel">
+      <button 
+        class="portfolio__nav-button portfolio__nav-button--prev"
+        (click)="previous()"
+        [disabled]="!canGoPrevious()"
+        [attr.aria-label]="'Imagem anterior'"
+        type="button"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="portfolio__images">
+        @for (image of visibleImages; track image; let i = $index) {
+          <div 
+            class="portfolio__image-wrapper"
+            (click)="openLightbox(image, currentIndex + i)"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="'Expandir foto ' + (currentIndex + i + 1)"
+          >
+            <img 
+              [src]="image" 
+              [alt]="'Foto do portfólio ' + (currentIndex + i + 1)"
+              class="portfolio__image"
+              loading="lazy"
+            />
+          </div>
+        }
+      </div>
+
+      <button 
+        class="portfolio__nav-button portfolio__nav-button--next"
+        (click)="next()"
+        [disabled]="!canGoNext()"
+        [attr.aria-label]="'Próxima imagem'"
+        type="button"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="portfolio__indicators">
+      @for (image of portfolioImages; track image; let i = $index) {
+        <button
+          class="portfolio__indicator"
+          [class.portfolio__indicator--active]="i >= currentIndex && i < currentIndex + itemsPerView"
+          (click)="goToImage(i)"
+          [attr.aria-label]="'Ir para imagem ' + (i + 1)"
+          type="button"
+        ></button>
+      }
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  @if (lightboxOpen) {
+    <div 
+      class="portfolio__lightbox"
+      (click)="onLightboxBackdropClick($event)"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Visualização ampliada da foto"
+      tabindex="0"
+    >
+      <button 
+        class="portfolio__lightbox-close"
+        (click)="closeLightbox()"
+        aria-label="Fechar visualização"
+        type="button"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <button 
+        class="portfolio__lightbox-nav portfolio__lightbox-nav--prev"
+        (click)="previousLightboxImage()"
+        [disabled]="!canGoPreviousLightbox()"
+        aria-label="Foto anterior"
+        type="button"
+      >
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="portfolio__lightbox-content">
+        <img 
+          [src]="lightboxImage" 
+          [alt]="'Foto ampliada ' + (lightboxImageIndex + 1)"
+          class="portfolio__lightbox-image"
+        />
+        <div class="portfolio__lightbox-counter">
+          {{ lightboxImageIndex + 1 }} / {{ portfolioImages.length }}
+        </div>
+      </div>
+
+      <button 
+        class="portfolio__lightbox-nav portfolio__lightbox-nav--next"
+        (click)="nextLightboxImage()"
+        [disabled]="!canGoNextLightbox()"
+        aria-label="Próxima foto"
+        type="button"
+      >
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  }
+</section>
+
