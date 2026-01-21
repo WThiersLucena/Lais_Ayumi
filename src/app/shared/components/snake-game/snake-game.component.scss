@@ -121,10 +121,10 @@
 
   &__controls-horizontal {
     display: flex;
-    gap: calc(var(--spacing-md) * 1.1); // 10% mais espaçado
+    gap: calc(var(--spacing-lg) * 2); // Espaçamento ainda maior entre esquerda e direita
 
     @media (max-width: 768px) {
-      gap: calc(var(--spacing-md) * 1.1); // 10% mais espaçado
+      gap: calc(var(--spacing-lg) * 2); // Espaçamento ainda maior entre esquerda e direita
     }
   }
 
