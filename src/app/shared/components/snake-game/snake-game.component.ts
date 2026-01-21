@@ -29,9 +29,22 @@ export class SnakeGameComponent implements OnInit, OnDestroy, AfterViewInit {
   gameRunning = false;
   gameOver = false;
   gameLoop: any;
+  gameSpeed = 150; // Velocidade padrão em ms
 
   ngOnInit(): void {
     this.loadHighScore();
+    this.calculateGameSpeed();
+  }
+
+  private calculateGameSpeed(): void {
+    if (typeof window !== 'undefined') {
+      // Em telas menores (mobile), reduz velocidade em 5%
+      if (window.innerWidth <= 768) {
+        this.gameSpeed = Math.round(150 * 1.05); // 5% mais lento = 157.5ms ≈ 158ms
+      } else {
+        this.gameSpeed = 150;
+      }
+    }
   }
 
   ngAfterViewInit(): void {
@@ -82,7 +95,7 @@ export class SnakeGameComponent implements OnInit, OnDestroy, AfterViewInit {
         this.move();
         this.draw();
       }
-    }, 150);
+    }, this.gameSpeed);
   }
 
   generateFood(): void {
