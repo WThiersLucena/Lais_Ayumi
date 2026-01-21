@@ -51,6 +51,9 @@
     color: var(--color-text-primary);
     transition: color var(--transition-fast);
     z-index: 1001;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
     &:hover {
       color: var(--color-text-secondary);
@@ -64,20 +67,26 @@
 
     @media (max-width: 768px) {
       font-size: 1.25rem;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
     }
   }
 
   &__logo-text {
     display: block;
+    font-family: "Edwardian Script ITC", "Brush Script MT", "Lucida Handwriting", cursive;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
   }
 
   &__nav {
     display: flex;
     gap: var(--spacing-md);
     align-items: center;
+    margin-left: auto;
 
     @media (max-width: 768px) {
       gap: var(--spacing-sm);
@@ -107,16 +116,20 @@
       visibility: hidden;
       transition: all var(--transition-normal);
       z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
 
       @media (max-width: 768px) {
         display: flex;
       }
-    }
 
-    &--mobile-open {
-      transform: translateY(0) !important;
-      opacity: 1 !important;
-      visibility: visible !important;
+      &.header__nav--mobile-open,
+      &--mobile-open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px;
+      }
     }
   }
 

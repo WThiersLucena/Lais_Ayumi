@@ -4,18 +4,40 @@
   display: flex;
   align-items: center;
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(
-    135deg,
-    #fff9f3 0%,
-    #fef5eb 50%,
-    #fdf0e3 100%
-  );
+  position: relative;
+  background: url('/assets/background/Lais-tela-2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  // Overlay com animação
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 249, 243, 1) 0%,
+      rgba(254, 245, 235, 1) 50%,
+      rgba(253, 240, 227, 1) 100%
+    );
+    opacity: var(--overlay-opacity, 0);
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+    pointer-events: none;
+  }
 
   &__container {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 1;
   }
 
   &__content {
@@ -83,9 +105,10 @@
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 300;
     letter-spacing: -0.03em;
-    color: var(--color-text-primary);
+    color: var(--text-color, white);
     margin-bottom: var(--spacing-sm);
     line-height: 1.1;
+    transition: color 0.1s ease;
   }
 
   &__social {
@@ -134,6 +157,9 @@
     gap: var(--spacing-md);
     flex-wrap: wrap;
     margin: var(--spacing-sm) 0;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 
     @media (max-width: 968px) {
       justify-content: center;
@@ -142,6 +168,11 @@
     @media (max-width: 480px) {
       flex-direction: column;
       gap: var(--spacing-sm);
+    }
+
+    &--visible {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
@@ -179,14 +210,26 @@
   &__description {
     font-size: 1.125rem;
     line-height: 1.8;
-    color: var(--color-text-secondary);
+    color: var(--text-color, white);
     max-width: 600px;
     margin-top: var(--spacing-sm);
+    transition: color 0.1s ease, opacity 0.8s ease-out, transform 0.8s ease-out;
+    opacity: 0;
+    transform: translateX(100px);
 
     @media (max-width: 968px) {
       max-width: 100%;
       text-align: center;
     }
+
+    &--visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .hero__content{
+    margin-top: -85px;
   }
 }
 

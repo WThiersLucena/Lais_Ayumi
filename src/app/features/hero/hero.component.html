@@ -1,4 +1,9 @@
-<section class="hero" aria-label="Seção principal">
+<section 
+  class="hero" 
+  aria-label="Seção principal"
+  [style.--overlay-opacity]="overlayOpacity"
+  [style.--text-color]="textColor"
+>
   <div class="hero__container">
     <div class="hero__content">
       <div class="hero__image-wrapper">
@@ -46,7 +51,10 @@
           </div>
         }
         
-        <div class="hero__specs">
+        <div 
+          class="hero__specs"
+          [class.hero__specs--visible]="showSpecs"
+        >
           <div class="hero__spec-item">
             <span class="hero__spec-label">Altura</span>
             <span class="hero__spec-value">{{ modelData.height }}</span>
@@ -61,7 +69,10 @@
           </div>
         </div>
         
-        <p class="hero__description">{{ modelData.description }}</p>
+        <p 
+          class="hero__description"
+          [class.hero__description--visible]="showSpecs"
+        >{{ modelData.description }}</p>
       </div>
     </div>
   </div>
