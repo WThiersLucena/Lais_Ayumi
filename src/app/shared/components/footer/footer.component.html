@@ -1,5 +1,16 @@
 <footer class="footer" role="contentinfo">
   <div class="footer__container">
+    <button 
+      class="footer__play-button"
+      (click)="toggleGameModal()"
+      aria-label="Abrir jogo da cobrinha"
+      type="button"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+      </svg>
+    </button>
+
     <div class="footer__content">
       <a 
         [href]="thiersUrl" 
@@ -27,5 +38,33 @@
       </a>
     </div>
   </div>
+
+  <!-- Modal do Jogo -->
+  @if (showGameModal) {
+    <div 
+      class="footer__game-modal"
+      (click)="closeGameModal()"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Jogo da Cobrinha"
+    >
+      <div 
+        class="footer__game-modal-content"
+        (click)="$event.stopPropagation()"
+      >
+        <button 
+          class="footer__game-modal-close"
+          (click)="closeGameModal()"
+          aria-label="Fechar jogo"
+          type="button"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <app-snake-game></app-snake-game>
+      </div>
+    </div>
+  }
 </footer>
 

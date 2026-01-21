@@ -3,12 +3,61 @@
   border-top: 1px solid var(--color-light-gray);
   padding: var(--spacing-md) 0;
   margin-top: var(--spacing-xl);
+  position: relative;
 
   &__container {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    position: relative;
+  }
+
+  &__play-button {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-pastel-sand);
+    border: 1px solid var(--color-light-gray);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    color: var(--color-text-primary);
+    z-index: 10;
+
+    &:hover {
+      background: var(--color-pastel-pearl);
+      border-color: var(--color-text-primary);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+      left: var(--spacing-sm);
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
 
   &__content {
@@ -90,6 +139,66 @@
     @media (max-width: 768px) {
       width: 70px;
       height: 70px;
+    }
+  }
+
+  // Modal do Jogo
+  &__game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  &__game-modal-content {
+    position: relative;
+    background: #000;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  &__game-modal-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    color: white;
+    z-index: 10001;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 }
